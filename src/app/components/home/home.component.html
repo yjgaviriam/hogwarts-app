@@ -1,0 +1,43 @@
+<div class="content">
+  <div class="card-container">
+    <div class="row g-4">
+      <div class="col-md-4 offset-md-2">
+        <a class="card p-2" [routerLink]="['/characters']">
+          <img src="http://hp-api.herokuapp.com/images/bellatrix.jpg" class="card-img-top" alt="characters"
+            height="500px">
+          <div class="card-body">
+            <h5 class="card-title">Characters</h5>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-4">
+        <a class="card p-2" rel="noopener" [routerLink]="['/professors']">
+          <img src="http://hp-api.herokuapp.com/images/filch.jpg" class="card-img-top" alt="professors" height="500px">
+          <div class="card-body">
+            <h5 class="card-title">Proffesors</h5>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-4 offset-md-2">
+        <a class="card p-2" rel="noopener" [routerLink]="['/students']">
+          <img src="http://hp-api.herokuapp.com/images/cedric.png" class="card-img-top" alt="students" height="500px">
+          <div class="card-body">
+            <h5 class="card-title">Students</h5>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-4">
+        <a class="card p-2" rel="noopener" [routerLink]="['/students-pending']">
+          <img src="http://hp-api.herokuapp.com/images/harry.jpg" class="card-img-top" alt="students-pending"
+            height="500px">
+          <div class="card-body">
+            <h5 class="card-title">Pending Students</h5>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

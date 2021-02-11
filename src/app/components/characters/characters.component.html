@@ -1,0 +1,51 @@
+<div class="content">
+
+  <!-- Select para casa de hechiceria -->
+  <div class="col col-md-2 offset-md-10">
+    <select class="form-select" id="floatingSelect" aria-label="Seleccionar la casa de hechicería"
+      [(ngModel)]="witchHouseSelected" (change)="getCharacters()">
+      <option [value]="'slytherin'">Slytherin</option>
+      <option [value]="'gryffindor'">Gryffindor</option>
+      <option [value]="'ravenclaw'">Ravenclaw</option>
+      <option [value]="'hufflepuff'">Hufflepuff</option>
+    </select>
+    <label for="floatingSelect">Seleccionar la casa de hechicería</label>
+  </div>
+
+  <br />
+
+  <!-- Campo de busqueda -->
+  <div class="col col-md-2 offset-md-10">
+    <input type="text" [(ngModel)]="filterBy" class="form-control" placeholder="Nombre o Patronus..."
+      aria-label="Buscador">
+  </div>
+
+  <br />
+  <!-- Listado de personajes -->
+  <table class="table">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Foto</th>
+        <th scope="col" style="cursor: pointer;" (click)="orderBy = 'name'"><em class="bi bi-sort-down-alt"
+            *ngIf="orderBy === 'name'"></em>Nombre</th>
+        <th scope="col" style="cursor: pointer;" (click)="orderBy = 'yearOfBirth'"><em class="bi bi-sort-down-alt"
+            *ngIf="orderBy === 'yearOfBirth'"></em>Edad</th>
+        <th scope="col" style="cursor: pointer;" (click)="orderBy = 'patronus'"><em class="bi bi-sort-down-alt"
+            *ngIf="orderBy === 'patronus'"></em>Patronus</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let character of characters | sort : orderBy | filter : filterBy; index as i">
+        <th class="align-middle" scope="row">{{ i + 1 }}</th>
+        <td class="align-middle"> <img [src]="character.image" class="rounded-circle" alt="foto" width="80" height="80">
+        </td>
+        <td class="align-middle">{{ character.name }}</td>
+        <td class="align-middle">{{ character.dateOfBirth | age : character.yearOfBirth }}</td>
+        <td class="align-middle"><span *ngIf="character.patronus; else elseBlock">{{ character.patronus }}</span>
+          <ng-template #elseBlock>-</ng-template>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

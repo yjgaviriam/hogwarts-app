@@ -1,0 +1,43 @@
+<div class="content">
+  <!-- Boton abrir modal -->
+  <div class="col offset-md-11">
+    <button type="button" class="btn btn-dark" (click)="addStudent()">Agregar Solicitud</button>
+  </div>
+
+  <br />
+
+  <!-- Campo de busqueda -->
+  <div class="col col-md-2 offset-md-10">
+    <input type="text" [(ngModel)]="filterBy" class="form-control" placeholder="Nombre o Patronus..." aria-label="Buscador">
+  </div>
+
+  <br />
+
+  <!-- Listado de estudiantes -->
+  <table class="table">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Foto</th>
+        <th scope="col" style="cursor: pointer;" (click)="orderBy = 'name'"><em class="bi bi-sort-down-alt"
+            *ngIf="orderBy === 'name'"></em>Nombre</th>
+        <th scope="col" style="cursor: pointer;" (click)="orderBy = 'yearOfBirth'"><em class="bi bi-sort-down-alt"
+            *ngIf="orderBy === 'yearOfBirth'"></em>Edad</th>
+        <th scope="col" style="cursor: pointer;" (click)="orderBy = 'patronus'"><em class="bi bi-sort-down-alt"
+            *ngIf="orderBy === 'patronus'"></em>Patronus</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of students | sort : orderBy | filter : filterBy; index as i">
+        <th class="align-middle" scope="row">{{ i + 1 }}</th>
+        <td class="align-middle"> <img [src]="student.image" class="rounded-circle" alt="foto" width="80" height="80">
+        </td>
+        <td class="align-middle">{{ student.name }}</td>
+        <td class="align-middle">{{ student.dateOfBirth | age : student.yearOfBirth }}</td>
+        <td class="align-middle"><span *ngIf="student.patronus; else elseBlock">{{ student.patronus }}</span>
+          <ng-template #elseBlock>-</ng-template>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

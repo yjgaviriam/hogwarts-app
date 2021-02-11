@@ -1,0 +1,32 @@
+<div class="content">
+  <!-- Campo de busqueda -->
+  <div class="col col-md-2 offset-md-10">
+    <input type="text" [(ngModel)]="filterBy" class="form-control" placeholder="Nombre o Patronus..."
+      aria-label="Buscador">
+  </div>
+
+  <br />
+
+  <!-- Listado de profesores -->
+  <table class="table">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Foto</th>
+        <th scope="col" style="cursor: pointer;" (click)="orderBy = 'name'"><em class="bi bi-sort-down-alt" *ngIf="orderBy === 'name'"></em>Nombre</th>
+        <th scope="col" style="cursor: pointer;" (click)="orderBy = 'yearOfBirth'"><em class="bi bi-sort-down-alt" *ngIf="orderBy === 'yearOfBirth'"></em>Edad</th>
+        <th scope="col" style="cursor: pointer;" (click)="orderBy = 'patronus'"><em class="bi bi-sort-down-alt" *ngIf="orderBy === 'patronus'"></em>Patronus</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let professor of professors | sort : orderBy | filter : filterBy; index as i">
+        <th class="align-middle" scope="row">{{ i + 1 }}</th>
+        <td class="align-middle"> <img [src]="professor.image" class="rounded-circle" alt="foto" width="80" height="80">
+        </td>
+        <td class="align-middle">{{ professor.name }}</td>
+        <td class="align-middle">{{ professor.dateOfBirth | age : professor.yearOfBirth }}</td>
+        <td class="align-middle"><span *ngIf="professor.patronus; else elseBlock">{{ professor.patronus }}</span><ng-template #elseBlock>-</ng-template></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

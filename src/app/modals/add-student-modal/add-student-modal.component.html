@@ -1,0 +1,19 @@
+<h2 mat-dialog-title>Solicitud Estudiante</h2>
+
+<form [formGroup]="form" class="needs-validation" (ngSubmit)="registerAdmission($event)" novalidate>
+  <div class="mb-3">
+    <input type="text" class="form-control" formControlName="name" placeholder="Nombre">
+  </div>
+  <div class="mb-3">
+    <input type="date" class="form-control" formControlName="dateOfBirth" placeholder="Fecha de Nacimiento">
+  </div>
+  <div class="mb-3">
+    <input type="text" class="form-control" formControlName="patronus" placeholder="Patronus">
+  </div>
+  <div class="mb-3">
+    <input type="text" class="form-control" formControlName="image" placeholder="Imagen Url">
+  </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Registrar</button>
+  </div>
+</form>
